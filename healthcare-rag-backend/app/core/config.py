@@ -17,7 +17,9 @@ for _env_file in _candidates:
 class Settings:
     def __init__(self):
         self.base_dir = Path(os.getenv('RAG_BASE_DIR', Path(__file__).resolve().parents[2]))
-        self.data_dir = Path(os.getenv('RAG_DATA_DIR', self.base_dir / 'data'))
+        # On Vercel the deployed filesystem is read-only except /tmp (and /tmp is not persistent).
+        default_data_dir = Path('/tmp/rag-data') if os.getenv('VERCEL') else self.base_dir / 'data'
+        self.data_dir = Path(os.getenv('RAG_DATA_DIR', default_data_dir))
         self.upload_dir = Path(os.getenv('RAG_UPLOAD_DIR', self.data_dir / 'uploads'))
         self.db_path = Path(os.getenv('RAG_DB_PATH', self.data_dir / 'rag.sqlite3'))
         self.index_path = Path(os.getenv('RAG_INDEX_PATH', self.data_dir / 'index.npz'))

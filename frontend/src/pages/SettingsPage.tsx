@@ -106,7 +106,7 @@ export const SettingsPage: React.FC = () => {
                 <h3 className="font-display font-bold text-xl text-warm-text dark:text-dark-text">
                   FastAPI Backend Service
                 </h3>
-                <p className="text-xs text-warm-muted">Proxied to localhost:8000</p>
+                <p className="text-xs text-warm-muted">Served from /api</p>
               </div>
             </div>
 
@@ -150,7 +150,7 @@ export const SettingsPage: React.FC = () => {
           <div className="pt-2 flex items-center justify-between text-xs">
             <span className="text-warm-muted">Interactive API Documentation:</span>
             <a
-              href="http://127.0.0.1:8000/docs"
+              href="/docs"
               target="_blank"
               rel="noreferrer"
               className="text-accent dark:text-accent-subtle font-semibold flex items-center gap-1 hover:underline"
